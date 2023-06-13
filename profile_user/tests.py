@@ -16,9 +16,9 @@ class ProfileAPITestCase(TestCase):
 
     def test_create_profile(self):
 
-        self.client.force_authenticate(user=self.user)
-
+        self.client.login(username='dulal', password='Dulal@123')
         data = {
+            'user': self.user.id,
             'name': 'dulal',
             'email': 'dulal@gmail.com',
             'bio': 'I am doing an internship in careers360',
@@ -33,7 +33,7 @@ class ProfileAPITestCase(TestCase):
 
     def test_update_profile(self):
 
-        self.client.force_authenticate(user=self.user)
+        self.client.login(username='dulal', password='Dulal@123')
         profile = Profile.objects.create(user=self.user, name='dulal', email='dulal@gmail.com')
         updated_data = {
 
@@ -48,3 +48,11 @@ class ProfileAPITestCase(TestCase):
         self.assertEqual(profile.name, 'Dulal')
         self.assertEqual(profile.email, 'dulal@example.com')
         self.assertEqual(profile.bio, 'Iam doing internship in careers360(gurugram)')
+
+    def test_unauthenticated_access(self):
+
+        self.client.logout() 
+        response = self.client.post('/profile/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        response = self.client.patch('/profile/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
