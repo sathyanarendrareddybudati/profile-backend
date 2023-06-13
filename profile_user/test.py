@@ -12,11 +12,10 @@ class ProfileAPITestCase(TestCase):
 
         self.client = APIClient()
         self.user = User.objects.create_user(username='dulal', password='Dulal@123')
-        print('self.user',self.user)
         self.client.force_authenticate(user=self.user)
 
     def test_create_profile(self):
-        
+
         self.client.force_authenticate(user=self.user)
 
         data = {
