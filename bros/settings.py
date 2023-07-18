@@ -129,6 +129,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL='profile_user.User'
+WEB_API_KEY ='satya-reddy'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
