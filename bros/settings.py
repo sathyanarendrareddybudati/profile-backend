@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'bros.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bros',
-        'HOST': '127.0.0.1',
+        'NAME': 'profile',
+        'HOST': 'localhost',
         'PORT': '3306',
-        'USER': 'bros',
+        'USER': 'root',
         'PASSWORD': 'Satya199$$',
     }
 }
@@ -128,7 +128,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+AUTH_USER_MODEL='profile_user.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
