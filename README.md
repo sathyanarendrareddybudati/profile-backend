@@ -18,3 +18,4 @@ To get started with Logging, follow these steps:
 ## Note
 - All requests must have Authorization token in headers
 - To install all packages using `make install` or `pip install -r requirements.txt`
+- Token must pass like in headers `Authorization : Token <Token value>`

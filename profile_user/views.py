@@ -6,10 +6,15 @@ from .serializers import UserProfileSerializer, UserRegistrationSerializer, User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from .decorators.decorators import ApiKeyPermission
+from .decorators.timer import timer
 
    
 class UserRegistrationAPI(APIView):
 
+    permission_classes=(ApiKeyPermission,)
+
+    @timer
     def post(self, request, format=None):
 
         serializer = UserRegistrationSerializer(data=request.data)
@@ -24,7 +29,10 @@ class UserRegistrationAPI(APIView):
 
 
 class UserLoginAPI(APIView):
-   
+
+    permission_classes=(ApiKeyPermission,)
+    
+    @timer
     def post(self, request, format=None):
 
         serializer=UserLoginSerializer(data=request.data)
@@ -47,6 +55,7 @@ class UserProfileAPIView(APIView):
     
     permission_classes = [IsAuthenticated]
 
+    @timer
     def post(self, request):
 
         serializer = UserProfileSerializer(data=request.data)
@@ -56,6 +65,7 @@ class UserProfileAPIView(APIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @timer
     def patch(self, request):
 
         try:
