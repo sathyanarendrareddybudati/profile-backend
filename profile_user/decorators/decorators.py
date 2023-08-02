@@ -7,8 +7,6 @@ class ApiKeyPermission(permissions.BasePermission):
 
 	def has_permission(self, request, view):
 		api_key = request.META.get('HTTP_X_API_KEY', "")
-		print('api_key',api_key)
-		print('==>>>>',settings.WEB_API_KEY)
 		
 		if api_key and api_key == settings.WEB_API_KEY:
 			return True
