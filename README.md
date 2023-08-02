@@ -1,5 +1,5 @@
 # profile-Backend
-It is a profile update or post the detials of user 
+ - It is a profile update or post the detials of user 
 
 # Technologies Used
  - Django & Django-Restframework
